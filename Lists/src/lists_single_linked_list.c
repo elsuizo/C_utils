@@ -28,7 +28,7 @@ You should have received a copy of the GNU General Public License
  *                        implementations
  -------------------------------------------------------------------------*/
 /**
- * @brief
+ * @brief Initialize a single linked list
  *
  * @param slist
  */
@@ -41,7 +41,7 @@ lists_single_linked_init(struct SingleLinked* slist) {
 }
 
 /**
- * @brief
+ * @brief Add a node in the head of the single linked list
  *
  * @param slist
  * @param data
@@ -71,7 +71,7 @@ lists_single_linked_add_head(struct SingleLinked* slist, const void* data) {
 }
 
 /**
- * @brief
+ * @brief Add a node in the tail of the single linked list
  *
  * @param slist
  * @param data
@@ -100,7 +100,7 @@ lists_single_linked_add_tail(struct SingleLinked* slist, const void* data) {
 }
 
 /**
- * @brief
+ * @brief Delete a especific node in a single linked list
  *
  * @param slist
  * @param node
@@ -141,7 +141,7 @@ lists_single_linked_delete_Node(struct SingleLinked* slist,
 }
 
 /**
- * @brief
+ * @brief Get the node wich hold a especific data
  *
  * @param slist
  * @param compare_func
