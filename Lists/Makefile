@@ -22,10 +22,13 @@ SRCDIR   = src
 INCDIR   = inc
 OBJDIR   = obj
 BINDIR   = bin
+TESTDIR  = tests
 
-SOURCES  := $(wildcard $(SRCDIR)/*.c)
-INCLUDES := $(wildcard $(INCDIR)/*.h)
-OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+SOURCES       := $(wildcard $(SRCDIR)/*.c)
+SOURCES_TESTS := $(wildcard $(TESTDIR)/*.c)
+INCLUDES_TEST := $(wildcard $(TESTDIR)/*.h)
+INCLUDES      := $(wildcard $(INCDIR)/*.h)
+OBJECTS       := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
 
@@ -46,3 +49,6 @@ clean:
 remove: clean
 	@$(rm) $(BINDIR)/$(TARGET)
 	@echo "Executable removed!"
+
+.PHONY: tests
+	

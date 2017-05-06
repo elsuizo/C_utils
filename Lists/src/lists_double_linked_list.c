@@ -6,7 +6,7 @@
 @email martin.noblia@openmailbox.org
 
 @brief
-
+Double linked list implementation
 @detail
 
 Licence:
@@ -24,6 +24,10 @@ You should have received a copy of the GNU General Public License
 ---------------------------------------------------------------------------*/
 /* include headers */
 #include "../inc/lists.h"
+
+extern int sum(int a, int b) {
+   return a + b;
+}
 /*-------------------------------------------------------------------------
  *                        implementations
  -------------------------------------------------------------------------*/
@@ -151,7 +155,8 @@ lists_double_linked_delete_NodeDouble(struct DoubleLinked* dlist, struct NodeDou
 }
 
 /**
- * @brief Get the node with contain a espefic data from the double linked list, the search begin in a head of the list.
+ * @brief Get the node with contain a espefic data from the double linked list,
+ * the search begin in a head of the list.
  *
  * @param dlist
  * @param compare_func
@@ -162,7 +167,9 @@ lists_double_linked_delete_NodeDouble(struct DoubleLinked* dlist, struct NodeDou
  * @return -1:error, 0:other case
  */
 extern struct NodeDouble*
-list_double_linked_get_NodeDouble(struct DoubleLinked* dlist, LISTS_SINGLE_COMPARE compare_func, const void* data)
+list_double_linked_get_NodeDouble(struct DoubleLinked* dlist,
+                                  LISTS_SINGLE_COMPARE compare_func,
+                                  const void* data)
 {
    struct NodeDouble* noded = dlist->head; /* point to the head of the list */
    while (noded != NULL) {
