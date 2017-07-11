@@ -25,9 +25,6 @@ You should have received a copy of the GNU General Public License
 /* include headers */
 #include "../inc/lists.h"
 
-extern int sum(int a, int b) {
-   return a + b;
-}
 /*-------------------------------------------------------------------------
  *                        implementations
  -------------------------------------------------------------------------*/
@@ -160,7 +157,7 @@ lists_double_linked_delete_NodeDouble(struct DoubleLinked* dlist, struct NodeDou
  *
  * @param dlist
  * @param compare_func
- * @param 
+ * @param
  * @param compare_func
  * @param data
  *

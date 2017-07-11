@@ -36,5 +36,3 @@ lists_general_show_error(const char* message)
    fprintf(stderr, "%s\n", message);
    fprintf(stderr, "...exiting to the system\n");
 }
-
-

@@ -31,7 +31,6 @@ You should have received a copy of the GNU General Public License
 /*=========================================================================
  *                        General
  ===========================================================================*/
-int sum(int a, int b);
 
 /*-------------------------------------------------------------------------
  *                        defines
@@ -51,7 +50,7 @@ int sum(int a, int b);
 /*-------------------------------------------------------------------------
  *                        prototypes general functions
  -------------------------------------------------------------------------*/
-static void
+extern void
 lists_general_show_error(const char* message);
 
 /*=========================================================================
@@ -152,5 +151,3 @@ extern void
 list_double_linked_display(struct DoubleLinked* dlist, LISTS_SINGLE_DISPLAY display_func, const char* name);
 
 #endif /* end Lists */
-
-
