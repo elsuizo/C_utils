@@ -24,19 +24,37 @@ You should have received a copy of the GNU General Public License
 ---------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <stdio.h>
-
-#include "vendor/unity.h"
 #include "../inc/lists.h"
+#include "vendor/unity.h"
 
-void test_test() {
-   int number_test = 37;
-   TEST_ASSERT_EQUAL_INT(37, number_test);
+static struct SingleLinked empty_list = {
+   NULL,
+   NULL,
+   NULL,
+   0,
+};
+
+static void
+assert_equal_SingleLinked(struct SingleLinked* slist_out,
+                          struct SingleLinked* expected)
+{
+   TEST_ASSERT_EQUAL_UINT8(expected->size, slist_out->size); /* size */
+   TEST_ASSERT_EQUAL_PTR(expected->head, slist_out->head); /* head */
+   TEST_ASSERT_EQUAL_PTR(expected->tail, slist_out->tail); /* tail */
+   TEST_ASSERT_EQUAL_PTR(expected->current, slist_out->current); /* current */
+
+}
+
+void test_single_lists_init() {
+   struct SingleLinked test_list;
+   lists_single_linked_init(&test_list);
+   assert_equal_SingleLinked(&test_list, &empty_list);
 }
 
 int main(void)
 {
    UnityBegin("test_lists.c");
 
-   RUN_TEST(test_test);
+   RUN_TEST(test_single_lists_init);
    return 0;
 }
