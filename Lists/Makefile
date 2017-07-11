@@ -1,39 +1,35 @@
-CC = clang # C compiler
-CFLAGS = -fPIC -Wall -Wextra -O2 -g # C flags
-LDFLAGS = -shared  # linking flags
-RM = rm -f  # rm command
-TARGET_LIB = liblists.so # target lib
+#-------------------------------------------------------------------------
+#                      Makefile for testing libraries
+#-------------------------------------------------------------------------
+TARGET = out
+cc     = clang
 
-# directories
-SRCDIR   = src
-INCDIR   = inc
-OBJDIR   = obj
-BINDIR   = bin
+CFLAGS  = -std=c99
+CFLAGS += -Wall
+CFLAGS += -Wextra
+CFLAGS += -pedantic
+FLAGS += -Werror
 
+SRCDIR = src
+INCDIR = inc
+TESTDIR = tests
 
 SOURCES       := $(wildcard $(SRCDIR)/*.c)
-OBJS = $(SOURCES:.c=.o)
+INCLUDES      := $(wildcard $(INCDIR)/*.h)
 
-.PHONY: all
-all: ${TARGET_LIB}
+RM = rm -f
 
-$(TARGET_LIB): $(OBJS)
-	$(CC) ${LDFLAGS} -o $@ $^
 
-$(SRCS:.c=.d):%.d:%.c
-	$(CC) $(CFLAGS) -MM $< >$@
+test: test_single_lists
+	@./test.out
 
-include $(SRCS:.c=.d)
 
+test_single_lists: $(SOURCES) $(INCLUDES)
+	@echo "Compiling" "$@"
+	@$(CC) $(CFLAGS) $? $(TESTDIR)/vendor/unity.c $(TESTDIR)/test_lists.c -o test.out
+
+# auxiliar commands
 .PHONY: clean
 clean:
-	${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.c=.d)
+	rm -f *.o *.out
 
-
-# # TODO(elsuizo:2017-07-11):hay que mejorar este Makefile, shared libraries no es muy comodo
-test: tests_single_lists.out
-	@./tests_single_lists.out
-
-tests_single_lists.out:
-	@echo Compiling $@
-	@cc $(CFLAGS) src/lists_single_linked_list.c tests/vendor/unity.c tests/test_lists.c -o tests_single_lists.out
