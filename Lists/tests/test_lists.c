@@ -51,10 +51,19 @@ void test_single_lists_init() {
    assert_equal_SingleLinked(&test_list, &empty_list);
 }
 
+void test_single_lists_add_head_list_empty() {
+   struct SingleLinked test_list;
+   int data_test = 37;
+   int result = lists_single_linked_add_head(&test_list, &data_test);
+   TEST_ASSERT_EQUAL_INT(0, result);
+}
+
 int main(void)
 {
    UnityBegin("test_lists.c");
 
    RUN_TEST(test_single_lists_init);
+   RUN_TEST(test_single_lists_add_head_list_empty);
+   UnityEnd();
    return 0;
 }
