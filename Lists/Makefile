@@ -29,9 +29,11 @@ include $(SRCS:.c=.d)
 clean:
 	${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.c=.d)
 
-test: tests.out
-	@./tests.out
 
-tests.out:
+# # TODO(elsuizo:2017-07-11):hay que mejorar este Makefile, shared libraries no es muy comodo
+test: tests_single_lists.out
+	@./tests_single_lists.out
+
+tests_single_lists.out:
 	@echo Compiling $@
-	@cc $(CFLAGS) -L/home/elsuizo/Repos/C_utils/Lists tests/vendor/unity.c tests/test_lists.c -o tests.out
+	@cc $(CFLAGS) src/lists_single_linked_list.c tests/vendor/unity.c tests/test_lists.c -o tests_single_lists.out
