@@ -1,54 +1,37 @@
-# ------------------------------------------------
-# Makefile for C projects
-# TODO: hacer una regla para crear las carpetas 
-# necesarias
-# por ejemplo: make project
-# ------------------------------------------------
+CC = clang # C compiler
+CFLAGS = -fPIC -Wall -Wextra -O2 -g # C flags
+LDFLAGS = -shared  # linking flags
+RM = rm -f  # rm command
+TARGET_LIB = liblists.so # target lib
 
-# project name (generate executable with this name)
-TARGET   = out
-
-CC       = gcc
-# compiling flags here
-CFLAGS   = -std=c89 -Wall -I.
-# CFLAGS   = -std=c99 -Wall -I.
-
-LINKER   = gcc -o
-# linking flags here
-LFLAGS   = -Wall -I. -lm
-
-# change these to proper directories where each file should be
+# directories
 SRCDIR   = src
 INCDIR   = inc
 OBJDIR   = obj
 BINDIR   = bin
-TESTDIR  = tests
+
 
 SOURCES       := $(wildcard $(SRCDIR)/*.c)
-SOURCES_TESTS := $(wildcard $(TESTDIR)/*.c)
-INCLUDES_TEST := $(wildcard $(TESTDIR)/*.h)
-INCLUDES      := $(wildcard $(INCDIR)/*.h)
-OBJECTS       := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
-rm       = rm -f
+OBJS = $(SOURCES:.c=.o)
 
+.PHONY: all
+all: ${TARGET_LIB}
 
-$(BINDIR)/$(TARGET): $(OBJECTS)
-	@$(LINKER) $@ $(LFLAGS) $(OBJECTS)
-	@echo "Linking complete!"
+$(TARGET_LIB): $(OBJS)
+	$(CC) ${LDFLAGS} -o $@ $^
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiled "$<" successfully!"
+$(SRCS:.c=.d):%.d:%.c
+	$(CC) $(CFLAGS) -MM $< >$@
+
+include $(SRCS:.c=.d)
 
 .PHONY: clean
 clean:
-	@$(rm) $(OBJECTS)
-	@echo "Cleanup complete!"
+	${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.c=.d)
 
-.PHONY: remove
-remove: clean
-	@$(rm) $(BINDIR)/$(TARGET)
-	@echo "Executable removed!"
+test: tests.out
+	@./tests.out
 
-.PHONY: tests
-	
+tests.out:
+	@echo Compiling $@
+	@cc $(CFLAGS) -L/home/elsuizo/Repos/C_utils/Lists tests/vendor/unity.c tests/test_lists.c -o tests.out
