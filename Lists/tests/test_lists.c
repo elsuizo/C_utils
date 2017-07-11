@@ -1,12 +1,12 @@
 /* -------------------------------------------------------------------------
-@file lists_tests.c
+@file test_lists.c
 
-@date 04/20/17 10:43:17
+@date 07/10/17 13:35:56
 @author Martin Noblia
 @email martin.noblia@openmailbox.org
 
 @brief
-
+Unit test for the list library
 @detail
 
 Licence:
@@ -22,42 +22,21 @@ General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 ---------------------------------------------------------------------------*/
-#include <check.h>
-#include "../inc/lists.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-START_TEST(test_sum) {
-   int a = 3;
-   int b = 7;
-   ck_assert_int_eq(sum(a, b), 10);
-}
-END_TEST
+#include "vendor/unity.h"
+#include "../inc/lists.h"
 
-Suite* sum_suite(void) {
-   Suite* s;
-   TCase* tc_core;
-
-   s = suite_create("Sum");
-   /* core test case */
-   tc_core = tcase_create("Core");
-   tcase_add_test(tc_core, test_sum);
-   suite_add_tcase(s, tc_core);
-
-   return s;
+void test_test() {
+   int number_test = 37;
+   TEST_ASSERT_EQUAL_INT(37, number_test);
 }
 
-int main(void) {
+int main(void)
+{
+   UnityBegin("test_lists.c");
+
+   RUN_TEST(test_test);
    return 0;
-   int number_of_failed;
-   Suite* s;
-   SRunner* sr;
-
-   s = sum_suite();
-   sr = srunner_create(s);
-
-   srunner_run_all(sr, CK_NORMAL);
-   number_of_failed = srunner_ntests_failed(sr);
-   srunner_free(sr);
-
-   return (number_of_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
