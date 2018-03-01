@@ -3,7 +3,7 @@
 
 @date 07/10/17 13:35:56
 @author Martin Noblia
-@email martin.noblia@openmailbox.org
+@email mnoblia@disroot.org
 
 @brief
 Unit test for the list library
