@@ -3,7 +3,7 @@
 
 @date 04/19/17 11:09:14
 @author Martin Noblia
-@email martin.noblia@openmailbox.org
+@email mnoblia@disroot.org
 
 @brief
 Double linked list implementation
