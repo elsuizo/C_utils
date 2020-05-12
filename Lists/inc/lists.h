@@ -38,6 +38,7 @@ You should have received a copy of the GNU General Public License
 #define LISTS_STATUS_OK       0
 #define LISTS_STATUS_ERROR   -1
 
+/* FIXME(elsuizo:2020-04-16): todas estas macros estan mal!!! */
 /*-------------------------------------------------------------------------
  *                        macros
  -------------------------------------------------------------------------*/
@@ -57,7 +58,6 @@ lists_general_show_error(const char* message);
  *                        Single linked lists
  ===========================================================================*/
 /* TODO(elsuizo:2017-04-18):put here a definition of this data structure */
-
 
 
 /*-------------------------------------------------------------------------

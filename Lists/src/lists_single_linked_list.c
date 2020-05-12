@@ -52,7 +52,7 @@ extern int
 lists_single_linked_add_head(struct SingleLinked* slist, const void* data) {
    struct Node* node;
    /* check for memory */
-   if ((node = (struct Node*)malloc(sizeof(struct Node))) == NULL) {
+   if((node = (struct Node*)malloc(sizeof(struct Node))) == NULL) {
       printf("Failed to allocate the memoty\n");
       return LISTS_STATUS_ERROR;
    }
@@ -60,6 +60,7 @@ lists_single_linked_add_head(struct SingleLinked* slist, const void* data) {
    /* the list is empty */
    if(slist->head == NULL) {
       slist->tail = node;
+      slist->current = node;
       node->next = NULL;
    } else {
       node->next = slist->head;
