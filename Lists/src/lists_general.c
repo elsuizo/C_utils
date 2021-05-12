@@ -30,8 +30,7 @@ You should have received a copy of the GNU General Public License
  * @param message
  */
 void
-lists_general_show_error(const char* message)
-{
+lists_general_show_error(const char* message) {
    fprintf(stderr, "Lists runtime errror\n");
    fprintf(stderr, "%s\n", message);
    fprintf(stderr, "...exiting to the system\n");
